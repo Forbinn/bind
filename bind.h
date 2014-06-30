@@ -5,11 +5,15 @@
 ** Login  <leroy_v@epitech.eu>
 **
 ** Started on  Mer jui 25 22:56:44 2014 vincent leroy
-** Last update Lun jui 30 20:57:28 2014 vincent leroy
+** Last update Lun jui 30 21:54:42 2014 vincent leroy
 */
 
 #ifndef BIND_H_
 # define BIND_H_
+
+// GCC lambda function : ({ return_type anonymous_function_name (parameters) { function_body } anonymous_function_name; })
+// Return : standard function pointer
+// Exemple : int (*func)(int, int)
 
 #if !defined(__GNUC__) || defined(__clang__)
 #error "You can only use bind macro with gcc compiler"
@@ -18,21 +22,21 @@
 #define bind1(retType, func, argType1, ...) \
     ({ \
         retType anonymous(argType1 a) \
-        { return (*(func))(__VA_ARGS__, a); } \
+        { return (func)(__VA_ARGS__, a); } \
         (void*)&anonymous; \
     })
 
 #define bind2(retType, func, argType1, argType2, ...) \
     ({ \
         retType anonymous(argType1 a, argType2 b) \
-        { return (*(func))(__VA_ARGS__, a, b); } \
+        { return (func)(__VA_ARGS__, a, b); } \
         (void*)&anonymous; \
     })
 
 #define bind3(retType, func, argType1, argType2, argType3, ...) \
     ({ \
         retType anonymous(argType1 a, argType2 b, argType3 c) \
-        { return (*(func))(__VA_ARGS__, a, b, c); } \
+        { return (func)(__VA_ARGS__, a, b, c); } \
         (void*)&anonymous; \
     })
 
